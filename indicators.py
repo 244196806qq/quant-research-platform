@@ -1,71 +1,74 @@
 import pandas as pd
+import numpy as np
 
 
-def calculate_moving_average(df_asset):
-    df_asset["MA10"] = df_asset["Adj Close"].rolling(10).mean()
-    df_asset["MA50"] = df_asset["Adj Close"].rolling(50).mean()
-    df_asset["MA200"] = df_asset["Adj Close"].rolling(200).mean()
+def ma(df: pd.DataFrame, short: int = 10, mid: int = 50, long: int = 200) -> pd.DataFrame:
+    out = pd.DataFrame(index=df.index)
+    out[f"MA{short}"] = df["Adj Close"].rolling(short).mean()
+    out[f"MA{mid}"] = df["Adj Close"].rolling(mid).mean()
+    out[f"MA{long}"] = df["Adj Close"].rolling(long).mean()
+    return out
 
 
-def calculate_z_score(df_asset):
-    df_asset["zscore_mean_50"] = df_asset["Adj Close"].rolling(50).mean()
-    df_asset["zscore_std_50"] = df_asset["Adj Close"].rolling(50).std()
-    df_asset["Z-Score"] = (df_asset["Adj Close"] - df_asset["zscore_mean_50"]) / df_asset["zscore_std_50"]
+def zscore(df: pd.DataFrame, window: int = 50) -> pd.Series:
+    mean = df["Adj Close"].rolling(window).mean()
+    std = df["Adj Close"].rolling(window).std()
+    return (df["Adj Close"] - mean) / std
 
 
-def calculate_momentum(df_asset):
-    df_asset["MA50"] = df_asset["Adj Close"].rolling(50).mean()
+def momentum(df: pd.DataFrame, window: int = 50) -> pd.Series:
+    ma = df["Adj Close"].rolling(window).mean()
+    return df["Adj Close"] / ma
 
 
-def calculate_rsi(df_asset):
-    delta = df_asset["Adj Close"].diff()
-    gain = delta.clip(lower = 0)
-    lose = -delta.clip(upper = 0)
-    avg_gain = gain.rolling(14).mean()
-    avg_loss = lose.rolling(14).mean()
+def rsi(df: pd.DataFrame, window: int = 14) -> pd.Series:
+    delta = df["Adj Close"].diff()
+    gain = delta.clip(lower=0)
+    loss = -delta.clip(upper=0)
+    avg_gain = gain.rolling(window).mean()
+    avg_loss = loss.rolling(window).mean()
     rs = avg_gain / avg_loss
-    df_asset["RSI"] = 100 - (100 / (1 + rs))
+    return 100 - (100 / (1 + rs))
 
 
-def calculate_rolling_std(df_asset):
-    df_asset["Volatility"] = df_asset["Market_Return"].rolling(20).std()
+def rolling_std(df: pd.DataFrame, window: int = 20) -> pd.Series:
+    return df["Market_Return"].rolling(window).std()
 
 
-def calculate_ATR(df_asset):
-    high_low = df_asset["High"] - df_asset["Low"]
-    high_prev_close = (df_asset["High"] - df_asset["Close"].shift(1)).abs()
-    low_prev_close = (df_asset["Low"] - df_asset["Close"].shift(1)).abs()
-    df_asset["TR"] = pd.concat([high_low, high_prev_close, low_prev_close], axis = 1).max(axis = 1)
-    df_asset["ATR"] = df_asset["TR"].rolling(14).mean()
-    df_asset["ATR Percent"] = (df_asset["ATR"] / df_asset["Close"]) * 100
-    df_asset["ATR Mean"] = df_asset["ATR"].rolling(100).mean()
+def atr(df: pd.DataFrame, window: int = 14) -> pd.Series:
+    high_low = df["High"] - df["Low"]
+    high_prev_close = (df["High"] - df["Close"].shift(1)).abs()
+    low_prev_close = (df["Low"] - df["Close"].shift(1)).abs()
+    tr = pd.concat([high_low, high_prev_close, low_prev_close], axis=1).max(axis=1)
+    return tr.rolling(window).mean()
 
 
-def calculate_EWMA(df_asset):
-    df_asset["EWMA_Volatility"] = (df_asset["Market_Return"].ewm(span = 20).std())
-    df_asset["EWMA_Mean"] = (df_asset["EWMA_Volatility"].rolling(100).mean())
+def ewma_vol(df: pd.DataFrame, span: int = 20) -> pd.Series:
+    return df["Market_Return"].ewm(span=span).std()
 
 
-def calculate_Annual_STD(df_asset):
-    df_asset["Annual Volatility"] = df_asset["Market_Return"].rolling(20).std() * (252 ** 0.5)
+def annual_std(df: pd.DataFrame, window: int = 20, periods: int = 252) -> pd.Series:
+    return df["Market_Return"].rolling(window).std() * (periods ** 0.5)
+
+def strategy_drawdown(df: pd.DataFrame) -> pd.Series:
+    rolling_peak = df["Strategy_Equity"].cummax()
 
 
-def calculate_indicator(df_asset, indicator):
-    if indicator == "MA":
-        return calculate_moving_average(df_asset)
-    elif indicator == "Z-Score":
-        return calculate_z_score(df_asset)
-    elif indicator == "Momentum":
-        return calculate_momentum(df_asset)
-    elif indicator == "RSI":
-        return calculate_rsi(df_asset)
-    elif indicator == "Rolling Std":
-        return calculate_rolling_std(df_asset)
-    elif indicator == "Avg True Range":
-        return calculate_ATR(df_asset)
-    elif indicator == "EWMA":
-        return calculate_EWMA(df_asset)
-    elif indicator == "Annual Std":
-        return calculate_Annual_STD(df_asset)
-    else:
+INDICATOR_MAP = {
+    "MA": ma,
+    "Z-Score": zscore,
+    "Momentum": momentum,
+    "RSI": rsi,
+    "Rolling Std": rolling_std,
+    "Avg True Range": atr,
+    "EWMA": ewma_vol,
+    "Annual Std": annual_std,
+}
+
+
+def calculate_indicator(df: pd.DataFrame, indicator: str, **kwargs):
+    try:
+        fn = INDICATOR_MAP[indicator]
+    except KeyError:
         raise ValueError(f"Unknown indicator: {indicator}")
+    return fn(df, **kwargs)
