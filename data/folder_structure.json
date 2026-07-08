@@ -1,0 +1,222 @@
+{
+  "technology": {
+    "semiconductors": {
+      "memory": {},
+      "fabless": {},
+      "foundries": {},
+      "analog": {},
+      "wireless": {},
+      "networking": {},
+      "storage_controllers": {},
+      "power_semiconductors": {},
+      "eda_software": {},
+      "osat_packaging": {},
+      "semiconductor_equipment": {}
+    },
+    "hardware": {
+      "consumer_devices": {},
+      "pc_hardware": {},
+      "servers": {},
+      "networking_equipment": {},
+      "storage": {}
+    },
+    "software": {
+      "cloud_software": {},
+      "enterprise_software": {},
+      "cybersecurity": {},
+      "database": {},
+      "developer_tools": {},
+      "erp_crm": {}
+    },
+    "internet": {
+      "search_advertising": {},
+      "social_media": {},
+      "streaming": {},
+      "gaming": {},
+      "marketplaces": {}
+    },
+    "emerging_technology": {
+      "ai_cloud": {},
+      "ai_infrastructure": {},
+      "robotics": {},
+      "autonomous_driving": {},
+      "quantum_computing": {},
+      "space": {},
+      "drones": {}
+    }
+  },
+
+  "communication_services": {
+    "telecom": {
+      "wireless": {},
+      "broadband": {}
+    },
+    "media": {
+      "streaming": {},
+      "advertising": {},
+      "video_games": {}
+    }
+  },
+
+  "consumer_discretionary": {
+    "retail": {
+      "e_commerce": {},
+      "home_improvement": {},
+      "discount_retail": {},
+      "luxury_goods": {}
+    },
+    "travel_leisure": {
+      "airlines": {},
+      "hotels": {},
+      "cruise_lines": {}
+    },
+    "automobiles": {
+      "traditional_auto": {},
+      "electric_vehicles": {},
+      "auto_parts": {}
+    },
+    "restaurants": {},
+    "apparel": {}
+  },
+
+  "consumer_staples": {
+    "food_beverage": {
+      "beverages": {},
+      "packaged_food": {}
+    },
+    "household_products": {},
+    "personal_care": {},
+    "tobacco": {},
+    "warehouse_clubs": {}
+  },
+
+  "financials": {
+    "banks": {
+      "money_center_banks": {},
+      "regional_banks": {},
+      "investment_banks": {}
+    },
+    "payments": {
+      "credit_cards": {},
+      "payment_processors": {},
+      "fintech": {}
+    },
+    "insurance": {
+      "life_insurance": {},
+      "property_casualty": {},
+      "reinsurance": {}
+    },
+    "asset_management": {
+      "asset_managers": {},
+      "private_equity": {},
+      "brokerages": {},
+      "online_brokerages": {},
+      "exchanges": {}
+    },
+    "fintech_lending": {}
+  },
+
+  "healthcare": {
+    "pharmaceuticals": {},
+    "biotech": {
+      "gene_therapy": {},
+      "crispr": {}
+    },
+    "medical_devices": {},
+    "diagnostics": {},
+    "life_sciences_tools": {},
+    "contract_research": {},
+    "weight_loss": {},
+    "health_insurance": {},
+    "hospitals_services": {}
+  },
+
+  "industrials": {
+    "aerospace_defense": {},
+    "machinery": {},
+    "construction_equipment": {},
+    "engineering_construction": {},
+    "electrical_equipment": {},
+    "factory_automation": {},
+    "transportation": {
+      "railroads": {},
+      "trucking": {},
+      "shipping": {},
+      "air_freight": {}
+    },
+    "industrial_conglomerates": {},
+    "waste_management": {}
+  },
+
+  "energy": {
+    "oil_gas": {
+      "integrated": {},
+      "exploration_production": {},
+      "oilfield_services": {},
+      "pipelines_midstream": {},
+      "refining_marketing": {}
+    },
+    "renewables": {
+      "solar": {},
+      "wind": {},
+      "hydrogen": {}
+    },
+    "uranium": {}
+  },
+
+  "materials": {
+    "chemicals": {
+      "commodity_chemicals": {},
+      "specialty_chemicals": {}
+    },
+    "metals_mining": {
+      "gold": {},
+      "silver": {},
+      "copper": {},
+      "lithium": {},
+      "rare_earths": {},
+      "steel": {},
+      "aluminum": {}
+    },
+    "forest_products": {},
+    "packaging": {}
+  },
+
+  "utilities": {
+    "electric_utilities": {},
+    "gas_utilities": {},
+    "water_utilities": {},
+    "renewable_utilities": {}
+  },
+
+  "real_estate": {
+    "reits": {
+      "data_centers": {},
+      "industrial": {},
+      "residential": {},
+      "office": {},
+      "retail": {},
+      "healthcare": {},
+      "self_storage": {},
+      "cell_towers": {},
+      "infrastructure": {}
+    }
+  },
+
+  "crypto": {
+    "bitcoin_miners": {},
+    "crypto_exchanges": {},
+    "blockchain_infrastructure": {},
+    "stablecoins": {}
+  },
+
+  "etfs_indices": {
+    "market_indices": {},
+    "sector_etfs": {},
+    "bond_etfs": {},
+    "commodity_etfs": {},
+    "international_etfs": {},
+    "leveraged_etfs": {},
+    "volatility_etfs": {}
+  }
+}

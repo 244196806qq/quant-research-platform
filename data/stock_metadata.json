@@ -1,0 +1,1755 @@
+{
+  "NVDA": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "fabless",
+    "tags": [
+      "AI",
+      "GPU",
+      "DataCenter",
+      "AutonomousDriving"
+    ]
+  },
+  "AMD": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "fabless",
+    "tags": [
+      "CPU",
+      "GPU",
+      "AI"
+    ]
+  },
+  "MU": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "memory",
+    "tags": [
+      "HBM",
+      "DRAM",
+      "NAND"
+    ]
+  },
+  "AVGO": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "networking",
+    "tags": [
+      "Networking",
+      "ASIC",
+      "VMware"
+    ]
+  },
+  "MRVL": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "networking",
+    "tags": [
+      "AI",
+      "Networking",
+      "Optics"
+    ]
+  },
+  "TSM": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "foundries",
+    "tags": [
+      "Foundry",
+      "AI"
+    ]
+  },
+  "ASML": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": [
+      "Lithography"
+    ]
+  },
+  "AMAT": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": [
+      "Deposition",
+      "Etch"
+    ]
+  },
+  "LRCX": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": [
+      "Etch"
+    ]
+  },
+  "KLAC": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": [
+      "Inspection"
+    ]
+  },
+  "COHR": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": [
+      "Optics",
+      "Datacenter",
+      "AI"
+    ]
+  },
+  "ANET": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": [
+      "Ethernet",
+      "Datacenter"
+    ]
+  },
+  "CRWV": {
+    "sector": "technology",
+    "industry": "emerging_technology",
+    "subindustry": "ai_cloud",
+    "tags": [
+      "GPUCloud"
+    ]
+  },
+  "MSFT": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": [
+      "Azure",
+      "AI"
+    ]
+  },
+  "AMZN": {
+    "sector": "consumer_discretionary",
+    "industry": "retail",
+    "subindustry": "e_commerce",
+    "tags": [
+      "AWS",
+      "Cloud"
+    ]
+  },
+  "GOOGL": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "advertising",
+    "tags": [
+      "Search",
+      "AI"
+    ]
+  },
+  "META": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "advertising",
+    "tags": [
+      "SocialMedia",
+      "AI"
+    ]
+  },
+  "TSLA": {
+    "sector": "consumer_discretionary",
+    "industry": "automobiles",
+    "subindustry": "electric_vehicles",
+    "tags": [
+      "EV",
+      "Robotaxi"
+    ]
+  },
+  "SOFI": {
+    "sector": "financials",
+    "industry": "fintech_lending",
+    "subindustry": "fintech",
+    "tags": [
+      "DigitalBank"
+    ]
+  },
+  "HOOD": {
+    "sector": "financials",
+    "industry": "asset_management",
+    "subindustry": "online_brokerages",
+    "tags": [
+      "Brokerage",
+      "Crypto"
+    ]
+  },
+  "AAPL": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "consumer_devices",
+    "tags": [
+      "iPhone",
+      "Wearables"
+    ]
+  },
+  "DELL": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "servers",
+    "tags": [
+      "AI",
+      "Servers"
+    ]
+  },
+  "SMCI": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "servers",
+    "tags": [
+      "AI",
+      "Servers"
+    ]
+  },
+  "CDNS": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "eda_software",
+    "tags": [
+      "EDA"
+    ]
+  },
+  "SNPS": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "eda_software",
+    "tags": [
+      "EDA"
+    ]
+  },
+  "MPWR": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "power_semiconductors",
+    "tags": [
+      "Power",
+      "AI"
+    ]
+  },
+  "ON": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "power_semiconductors",
+    "tags": [
+      "EV",
+      "SiC"
+    ]
+  },
+  "AMKR": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "osat_packaging",
+    "tags": [
+      "Packaging"
+    ]
+  },
+  "PANW": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cybersecurity",
+    "tags": [
+      "Security"
+    ]
+  },
+  "CRWD": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cybersecurity",
+    "tags": [
+      "Security"
+    ]
+  },
+  "ZS": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cybersecurity",
+    "tags": [
+      "Security"
+    ]
+  },
+  "MDB": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "database",
+    "tags": [
+      "Database"
+    ]
+  },
+  "ORCL": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "database",
+    "tags": [
+      "Cloud",
+      "Database"
+    ]
+  },
+  "NFLX": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "streaming",
+    "tags": [
+      "Streaming"
+    ]
+  },
+  "DIS": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "streaming",
+    "tags": [
+      "Entertainment"
+    ]
+  },
+  "UBER": {
+    "sector": "consumer_discretionary",
+    "industry": "travel_leisure",
+    "subindustry": "ride_sharing",
+    "tags": [
+      "RideSharing"
+    ]
+  },
+  "HD": {
+    "sector": "consumer_discretionary",
+    "industry": "retail",
+    "subindustry": "home_improvement",
+    "tags": []
+  },
+  "COST": {
+    "sector": "consumer_staples",
+    "industry": "warehouse_clubs",
+    "subindustry": "",
+    "tags": []
+  },
+  "WMT": {
+    "sector": "consumer_staples",
+    "industry": "warehouse_clubs",
+    "subindustry": "",
+    "tags": []
+  },
+  "JPM": {
+    "sector": "financials",
+    "industry": "banks",
+    "subindustry": "money_center_banks",
+    "tags": []
+  },
+  "BAC": {
+    "sector": "financials",
+    "industry": "banks",
+    "subindustry": "money_center_banks",
+    "tags": []
+  },
+  "GS": {
+    "sector": "financials",
+    "industry": "banks",
+    "subindustry": "investment_banks",
+    "tags": []
+  },
+  "MS": {
+    "sector": "financials",
+    "industry": "banks",
+    "subindustry": "investment_banks",
+    "tags": []
+  },
+  "V": {
+    "sector": "financials",
+    "industry": "payments",
+    "subindustry": "credit_cards",
+    "tags": []
+  },
+  "MA": {
+    "sector": "financials",
+    "industry": "payments",
+    "subindustry": "credit_cards",
+    "tags": []
+  },
+  "PYPL": {
+    "sector": "financials",
+    "industry": "payments",
+    "subindustry": "payment_processors",
+    "tags": []
+  },
+  "BLK": {
+    "sector": "financials",
+    "industry": "asset_management",
+    "subindustry": "asset_managers",
+    "tags": []
+  },
+  "ICE": {
+    "sector": "financials",
+    "industry": "asset_management",
+    "subindustry": "exchanges",
+    "tags": []
+  },
+  "CME": {
+    "sector": "financials",
+    "industry": "asset_management",
+    "subindustry": "exchanges",
+    "tags": []
+  },
+  "LLY": {
+    "sector": "healthcare",
+    "industry": "weight_loss",
+    "subindustry": "",
+    "tags": [
+      "GLP1"
+    ]
+  },
+  "NVO": {
+    "sector": "healthcare",
+    "industry": "weight_loss",
+    "subindustry": "",
+    "tags": [
+      "GLP1"
+    ]
+  },
+  "ISRG": {
+    "sector": "healthcare",
+    "industry": "medical_devices",
+    "subindustry": "",
+    "tags": [
+      "Robotics"
+    ]
+  },
+  "ABT": {
+    "sector": "healthcare",
+    "industry": "diagnostics",
+    "subindustry": "",
+    "tags": []
+  },
+  "UNH": {
+    "sector": "healthcare",
+    "industry": "health_insurance",
+    "subindustry": "",
+    "tags": []
+  },
+  "CAT": {
+    "sector": "industrials",
+    "industry": "construction_equipment",
+    "subindustry": "",
+    "tags": []
+  },
+  "GE": {
+    "sector": "industrials",
+    "industry": "aerospace_defense",
+    "subindustry": "",
+    "tags": []
+  },
+  "RTX": {
+    "sector": "industrials",
+    "industry": "aerospace_defense",
+    "subindustry": "",
+    "tags": []
+  },
+  "ETN": {
+    "sector": "industrials",
+    "industry": "electrical_equipment",
+    "subindustry": "",
+    "tags": [
+      "Power"
+    ]
+  },
+  "ROK": {
+    "sector": "industrials",
+    "industry": "factory_automation",
+    "subindustry": "",
+    "tags": []
+  },
+  "XOM": {
+    "sector": "energy",
+    "industry": "oil_gas",
+    "subindustry": "integrated",
+    "tags": []
+  },
+  "CVX": {
+    "sector": "energy",
+    "industry": "oil_gas",
+    "subindustry": "integrated",
+    "tags": []
+  },
+  "SLB": {
+    "sector": "energy",
+    "industry": "oil_gas",
+    "subindustry": "oilfield_services",
+    "tags": []
+  },
+  "CCJ": {
+    "sector": "energy",
+    "industry": "uranium",
+    "subindustry": "",
+    "tags": [
+      "Nuclear"
+    ]
+  },
+  "NEM": {
+    "sector": "materials",
+    "industry": "metals_mining",
+    "subindustry": "gold",
+    "tags": []
+  },
+  "FCX": {
+    "sector": "materials",
+    "industry": "metals_mining",
+    "subindustry": "copper",
+    "tags": []
+  },
+  "NEE": {
+    "sector": "utilities",
+    "industry": "renewable_utilities",
+    "subindustry": "",
+    "tags": []
+  },
+  "EQIX": {
+    "sector": "real_estate",
+    "industry": "reits",
+    "subindustry": "data_centers",
+    "tags": [
+      "AI"
+    ]
+  },
+  "DLR": {
+    "sector": "real_estate",
+    "industry": "reits",
+    "subindustry": "data_centers",
+    "tags": [
+      "AI"
+    ]
+  },
+  "AMT": {
+    "sector": "real_estate",
+    "industry": "reits",
+    "subindustry": "cell_towers",
+    "tags": []
+  },
+  "CCI": {
+    "sector": "real_estate",
+    "industry": "reits",
+    "subindustry": "cell_towers",
+    "tags": []
+  },
+  "MSTR": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "enterprise_software",
+    "tags": [
+      "Bitcoin"
+    ]
+  },
+  "COIN": {
+    "sector": "crypto",
+    "industry": "crypto_exchanges",
+    "subindustry": "crypto_exchanges",
+    "tags": [
+      "Bitcoin"
+    ]
+  },
+  "MARA": {
+    "sector": "crypto",
+    "industry": "bitcoin_miners",
+    "subindustry": "bitcoin_miners",
+    "tags": [
+      "Bitcoin"
+    ]
+  },
+  "RIOT": {
+    "sector": "crypto",
+    "industry": "bitcoin_miners",
+    "subindustry": "bitcoin_miners",
+    "tags": [
+      "Bitcoin"
+    ]
+  },
+  "INTC": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "foundries",
+    "tags": [
+      "CPU"
+    ]
+  },
+  "IBM": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "enterprise_software",
+    "tags": [
+      "AI",
+      "Consulting"
+    ]
+  },
+  "CSCO": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": [
+      "Networking"
+    ]
+  },
+  "QCOM": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "wireless",
+    "tags": [
+      "5G",
+      "Mobile"
+    ]
+  },
+  "TXN": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "analog",
+    "tags": [
+      "Analog"
+    ]
+  },
+  "HPQ": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "pc_hardware",
+    "tags": [
+      "PC"
+    ]
+  },
+  "CRM": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "erp_crm",
+    "tags": [
+      "CRM",
+      "Cloud"
+    ]
+  },
+  "ADBE": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "developer_tools",
+    "tags": [
+      "CreativeCloud"
+    ]
+  },
+  "ABNB": {
+    "sector": "consumer_discretionary",
+    "industry": "travel_leisure",
+    "subindustry": "hotels",
+    "tags": [
+      "Travel"
+    ]
+  },
+  "PLTR": {
+    "sector": "technology",
+    "industry": "emerging_technology",
+    "subindustry": "ai_cloud",
+    "tags": [
+      "AI",
+      "Government"
+    ]
+  },
+  "SNOW": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": [
+      "DataCloud"
+    ]
+  },
+  "SHOP": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "marketplaces",
+    "tags": [
+      "Ecommerce"
+    ]
+  },
+  "XYZ": {
+    "sector": "financials",
+    "industry": "payments",
+    "subindustry": "fintech",
+    "tags": [
+      "Fintech"
+    ]
+  },
+  "INTU": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "enterprise_software",
+    "tags": [
+      "Tax",
+      "Accounting"
+    ]
+  },
+  "NOW": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "enterprise_software",
+    "tags": [
+      "Workflow"
+    ]
+  },
+  "ZM": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": [
+      "Video"
+    ]
+  },
+  "DOCU": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": [
+      "E-signature"
+    ]
+  },
+  "RBLX": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "video_games",
+    "tags": [
+      "Gaming"
+    ]
+  },
+  "RDDT": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "advertising",
+    "tags": [
+      "SocialMedia"
+    ]
+  },
+  "BABA": {
+    "sector": "consumer_discretionary",
+    "industry": "retail",
+    "subindustry": "e_commerce",
+    "tags": [
+      "China"
+    ]
+  },
+  "JD": {
+    "sector": "consumer_discretionary",
+    "industry": "retail",
+    "subindustry": "e_commerce",
+    "tags": [
+      "China"
+    ]
+  },
+  "PDD": {
+    "sector": "consumer_discretionary",
+    "industry": "retail",
+    "subindustry": "e_commerce",
+    "tags": [
+      "China"
+    ]
+  },
+  "TCEHY": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "video_games",
+    "tags": [
+      "China"
+    ]
+  },
+  "BIDU": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "advertising",
+    "tags": [
+      "Search",
+      "AI"
+    ]
+  },
+  "SONY": {
+    "sector": "consumer_discretionary",
+    "industry": "video_games",
+    "subindustry": "",
+    "tags": [
+      "PlayStation"
+    ]
+  },
+  "SAP": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "erp_crm",
+    "tags": [
+      "ERP"
+    ]
+  },
+  "ARM": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "fabless",
+    "tags": [
+      "CPU"
+    ]
+  },
+  "BA": {
+    "sector": "industrials",
+    "industry": "aerospace_defense",
+    "subindustry": "",
+    "tags": [
+      "Aircraft"
+    ]
+  },
+  "MMM": {
+    "sector": "industrials",
+    "industry": "industrial_conglomerates",
+    "subindustry": "",
+    "tags": []
+  },
+  "F": {
+    "sector": "consumer_discretionary",
+    "industry": "automobiles",
+    "subindustry": "traditional_auto",
+    "tags": []
+  },
+  "GM": {
+    "sector": "consumer_discretionary",
+    "industry": "automobiles",
+    "subindustry": "traditional_auto",
+    "tags": [
+      "Cruise"
+    ]
+  },
+  "C": {
+    "sector": "financials",
+    "industry": "banks",
+    "subindustry": "money_center_banks",
+    "tags": []
+  },
+  "AXP": {
+    "sector": "financials",
+    "industry": "payments",
+    "subindustry": "credit_cards",
+    "tags": []
+  },
+  "BRK-B": {
+    "sector": "financials",
+    "industry": "insurance",
+    "subindustry": "property_casualty",
+    "tags": [
+      "Conglomerate"
+    ]
+  },
+  "SPGI": {
+    "sector": "financials",
+    "industry": "asset_management",
+    "subindustry": "exchanges",
+    "tags": [
+      "Ratings"
+    ]
+  },
+  "SCHW": {
+    "sector": "financials",
+    "industry": "asset_management",
+    "subindustry": "brokerages",
+    "tags": []
+  },
+  "WFC": {
+    "sector": "financials",
+    "industry": "banks",
+    "subindustry": "money_center_banks",
+    "tags": []
+  },
+  "USB": {
+    "sector": "financials",
+    "industry": "banks",
+    "subindustry": "regional_banks",
+    "tags": []
+  },
+  "COP": {
+    "sector": "energy",
+    "industry": "oil_gas",
+    "subindustry": "exploration_production",
+    "tags": []
+  },
+  "HAL": {
+    "sector": "energy",
+    "industry": "oil_gas",
+    "subindustry": "oilfield_services",
+    "tags": []
+  },
+  "BP": {
+    "sector": "energy",
+    "industry": "oil_gas",
+    "subindustry": "integrated",
+    "tags": []
+  },
+  "T": {
+    "sector": "communication_services",
+    "industry": "telecom",
+    "subindustry": "wireless",
+    "tags": []
+  },
+  "VZ": {
+    "sector": "communication_services",
+    "industry": "telecom",
+    "subindustry": "wireless",
+    "tags": []
+  },
+  "CMCSA": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "streaming",
+    "tags": []
+  },
+  "WBD": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "streaming",
+    "tags": []
+  },
+  "PSKY": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "streaming",
+    "tags": []
+  },
+  "NKE": {
+    "sector": "consumer_discretionary",
+    "industry": "apparel",
+    "subindustry": "",
+    "tags": []
+  },
+  "SBUX": {
+    "sector": "consumer_discretionary",
+    "industry": "restaurants",
+    "subindustry": "",
+    "tags": []
+  },
+  "MCD": {
+    "sector": "consumer_discretionary",
+    "industry": "restaurants",
+    "subindustry": "",
+    "tags": []
+  },
+  "KO": {
+    "sector": "consumer_staples",
+    "industry": "food_beverage",
+    "subindustry": "beverages",
+    "tags": []
+  },
+  "PEP": {
+    "sector": "consumer_staples",
+    "industry": "food_beverage",
+    "subindustry": "beverages",
+    "tags": []
+  },
+  "LOW": {
+    "sector": "consumer_discretionary",
+    "industry": "retail",
+    "subindustry": "home_improvement",
+    "tags": []
+  },
+  "PG": {
+    "sector": "consumer_staples",
+    "industry": "household_products",
+    "subindustry": "",
+    "tags": []
+  },
+  "JNJ": {
+    "sector": "healthcare",
+    "industry": "pharmaceuticals",
+    "subindustry": "",
+    "tags": []
+  },
+  "PFE": {
+    "sector": "healthcare",
+    "industry": "pharmaceuticals",
+    "subindustry": "",
+    "tags": []
+  },
+  "MRK": {
+    "sector": "healthcare",
+    "industry": "pharmaceuticals",
+    "subindustry": "",
+    "tags": []
+  },
+  "GME": {
+    "sector": "consumer_discretionary",
+    "industry": "retail",
+    "subindustry": "discount_retail",
+    "tags": [
+      "Gaming"
+    ]
+  },
+  "AMC": {
+    "sector": "communication_services",
+    "industry": "media",
+    "subindustry": "streaming",
+    "tags": [
+      "Theaters"
+    ]
+  },
+  "AMGN": {
+    "sector": "healthcare",
+    "industry": "biotech",
+    "subindustry": "gene_therapy",
+    "tags": []
+  },
+  "MNST": {
+    "sector": "consumer_staples",
+    "industry": "food_beverage",
+    "subindustry": "beverages",
+    "tags": [
+      "EnergyDrinks"
+    ]
+  },
+  "SPY": {
+    "sector": "etfs_indices",
+    "industry": "market_indices",
+    "subindustry": "",
+    "tags": ["S&P500"]
+  },
+  "QQQ": {
+    "sector": "etfs_indices",
+    "industry": "market_indices",
+    "subindustry": "",
+    "tags": ["Nasdaq100"]
+  },
+  "DIA": {
+    "sector": "etfs_indices",
+    "industry": "market_indices",
+    "subindustry": "",
+    "tags": ["DowJones"]
+  },
+  "IWM": {
+    "sector": "etfs_indices",
+    "industry": "market_indices",
+    "subindustry": "",
+    "tags": ["Russell2000"]
+  },
+  "VTI": {
+    "sector": "etfs_indices",
+    "industry": "market_indices",
+    "subindustry": "",
+    "tags": ["TotalMarket"]
+  },
+  "SMH": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["Semiconductors"]
+  },
+  "SOXX": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["Semiconductors"]
+  },
+  "XLK": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["Technology"]
+  },
+  "XLF": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["Financials"]
+  },
+  "XLE": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["Energy"]
+  },
+  "XLV": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["Healthcare"]
+  },
+  "XLI": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["Industrials"]
+  },
+  "XLP": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["ConsumerStaples"]
+  },
+  "XLY": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["ConsumerDiscretionary"]
+  },
+  "XLRE": {
+    "sector": "etfs_indices",
+    "industry": "sector_etfs",
+    "subindustry": "",
+    "tags": ["RealEstate"]
+  },
+  "TLT": {
+    "sector": "etfs_indices",
+    "industry": "bond_etfs",
+    "subindustry": "",
+    "tags": ["Treasury"]
+  },
+  "IEF": {
+    "sector": "etfs_indices",
+    "industry": "bond_etfs",
+    "subindustry": "",
+    "tags": ["Treasury"]
+  },
+  "GLD": {
+    "sector": "etfs_indices",
+    "industry": "commodity_etfs",
+    "subindustry": "",
+    "tags": ["Gold"]
+  },
+  "SLV": {
+    "sector": "etfs_indices",
+    "industry": "commodity_etfs",
+    "subindustry": "",
+    "tags": ["Silver"]
+  },
+  "USO": {
+    "sector": "etfs_indices",
+    "industry": "commodity_etfs",
+    "subindustry": "",
+    "tags": ["Oil"]
+  },
+  "BITO": {
+    "sector": "etfs_indices",
+    "industry": "commodity_etfs",
+    "subindustry": "",
+    "tags": ["Bitcoin"]
+  },
+  "GRMN": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "consumer_devices",
+    "tags": ["Wearables", "GPS", "OutdoorTech"]
+  },
+  "LOGI": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "consumer_devices",
+    "tags": ["Peripherals", "Gaming"]
+  },
+  "GPRO": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "consumer_devices",
+    "tags": ["Camera", "ActionCamera"]
+  },
+  "CRSR": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "consumer_devices",
+    "tags": ["Gaming", "Peripherals", "PCComponents"]
+  },
+
+  "HPE": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "servers",
+    "tags": ["Servers", "EnterpriseHardware", "AI"]
+  },
+  "NTNX": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "servers",
+    "tags": ["CloudInfrastructure", "Hyperconverged"]
+  },
+  "WDC": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "storage",
+    "tags": ["HDD", "NAND", "Storage"]
+  },
+  "STX": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "storage",
+    "tags": ["HDD", "Storage"]
+  },
+  "NTAP": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "storage",
+    "tags": ["EnterpriseStorage", "CloudStorage"]
+  },
+  "P": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "storage",
+    "tags": ["FlashStorage", "EnterpriseStorage"]
+  },
+
+  "CIEN": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": ["Optical", "Networking"]
+  },
+  "NOK": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": ["TelecomEquipment", "5G"]
+  },
+  "ERIC": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": ["TelecomEquipment", "5G"]
+  },
+  "UI": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": ["Networking", "EnterpriseWiFi"]
+  },
+  "EXTR": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": ["Networking", "EnterpriseWiFi"]
+  },
+  "CALX": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": ["Broadband", "Networking"]
+  },
+  "AAOI": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": ["Optics", "Datacenter", "AI"]
+  },
+  "FN": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "networking_equipment",
+    "tags": ["Optics", "Manufacturing", "Datacenter"]
+  },
+
+  "LNVGY": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "pc_hardware",
+    "tags": ["PC", "Servers"]
+  },
+  "ASUUY": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "pc_hardware",
+    "tags": ["PC", "Gaming", "Motherboards"]
+  },
+  "CDW": {
+    "sector": "technology",
+    "industry": "hardware",
+    "subindustry": "pc_hardware",
+    "tags": ["ITReseller", "EnterpriseIT"]
+  },
+  "MELI": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "marketplaces",
+    "tags": ["Ecommerce", "LatinAmerica", "Fintech"]
+  },
+  "EBAY": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "marketplaces",
+    "tags": ["Ecommerce", "Marketplace"]
+  },
+  "ETSY": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "marketplaces",
+    "tags": ["Ecommerce", "Marketplace"]
+  },
+  "FVRR": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "marketplaces",
+    "tags": ["Freelance", "Marketplace"]
+  },
+  "UPWK": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "marketplaces",
+    "tags": ["Freelance", "Marketplace"]
+  },
+  "DASH": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "marketplaces",
+    "tags": ["Delivery", "Marketplace"]
+  },
+
+  "PINS": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "social_media",
+    "tags": ["SocialMedia", "Advertising"]
+  },
+  "SNAP": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "social_media",
+    "tags": ["SocialMedia", "Advertising"]
+  },
+  "MTCH": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "social_media",
+    "tags": ["Dating", "SocialMedia"]
+  },
+
+  "SPOT": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "streaming",
+    "tags": ["MusicStreaming", "Audio"]
+  },
+  "ROKU": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "streaming",
+    "tags": ["Streaming", "ConnectedTV", "Advertising"]
+  },
+  "FUBO": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "streaming",
+    "tags": ["Streaming", "Sports"]
+  },
+
+  "EA": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "gaming",
+    "tags": ["Gaming", "SportsGames"]
+  },
+  "TTWO": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "gaming",
+    "tags": ["Gaming"]
+  },
+  "NTES": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "gaming",
+    "tags": ["Gaming", "China"]
+  },
+  "SE": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "gaming",
+    "tags": ["Gaming", "Ecommerce", "SoutheastAsia"]
+  },
+
+  "YELP": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "search_advertising",
+    "tags": ["LocalSearch", "Advertising"]
+  },
+  "IAC": {
+    "sector": "technology",
+    "industry": "internet",
+    "subindustry": "search_advertising",
+    "tags": ["InternetHoldCo", "Advertising"]
+  },
+  "ADI": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "analog",
+    "tags": ["Analog", "Industrial", "Auto"]
+  },
+  "MCHP": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "analog",
+    "tags": ["Microcontrollers", "Embedded", "Industrial"]
+  },
+  "NXPI": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "analog",
+    "tags": ["Auto", "Industrial", "MCU"]
+  },
+  "STM": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "power_semiconductors",
+    "tags": ["MCU", "SiC", "Auto"]
+  },
+  "IFNNY": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "power_semiconductors",
+    "tags": ["Power", "SiC", "Auto"]
+  },
+  "ALGM": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "power_semiconductors",
+    "tags": ["Power", "Auto", "Sensors"]
+  },
+  "POWI": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "power_semiconductors",
+    "tags": ["Power", "PowerConversion"]
+  },
+
+  "SWKS": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "wireless",
+    "tags": ["RF", "Mobile", "Wireless"]
+  },
+  "QRVO": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "wireless",
+    "tags": ["RF", "Mobile", "Wireless"]
+  },
+  "MTSI": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "wireless",
+    "tags": ["RF", "Optical", "Networking"]
+  },
+
+  "LSCC": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "fabless",
+    "tags": ["FPGA", "LowPower"]
+  },
+  "DIOD": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "fabless",
+    "tags": ["Discrete", "Analog", "Power"]
+  },
+  "SITM": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "fabless",
+    "tags": ["Timing", "PrecisionTiming"]
+  },
+  "CRUS": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "fabless",
+    "tags": ["Audio", "MixedSignal"]
+  },
+  "SLAB": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "fabless",
+    "tags": ["IoT", "MCU", "Wireless"]
+  },
+  "RMBS": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "fabless",
+    "tags": ["MemoryInterface", "Security", "DataCenter"]
+  },
+
+  "GFS": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "foundries",
+    "tags": ["Foundry"]
+  },
+  "UMC": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "foundries",
+    "tags": ["Foundry", "Taiwan"]
+  },
+
+  "TER": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["Testing", "Automation"]
+  },
+  "ENTG": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["Materials", "Filtration", "ProcessControl"]
+  },
+  "ONTO": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["Inspection", "Metrology"]
+  },
+  "ACLS": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["IonImplant", "Equipment"]
+  },
+  "AEHR": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["Testing", "BurnIn", "SiC"]
+  },
+  "COHU": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["Testing", "Inspection"]
+  },
+  "ICHR": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["EquipmentParts", "GasDelivery"]
+  },
+  "UCTT": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["EquipmentParts", "Manufacturing"]
+  },
+  "FORM": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["Testing", "ProbeCards"]
+  },
+  "MKSI": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["ProcessControl", "Photonics"]
+  },
+  "VECO": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["Deposition", "LaserAnnealing"]
+  },
+  "CAMT": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["Inspection", "Metrology"]
+  },
+  "BESIY": {
+    "sector": "technology",
+    "industry": "semiconductors",
+    "subindustry": "semiconductor_equipment",
+    "tags": ["Packaging", "HybridBonding"]
+  },
+  "DDOG": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": ["Observability", "Cloud", "DevOps"]
+  },
+  "NET": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": ["Edge", "Security", "Cloud"]
+  },
+  "AKAM": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": ["CDN", "Edge", "Security"]
+  },
+  "FSLY": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": ["CDN", "Edge", "Cloud"]
+  },
+  "TWLO": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": ["CommunicationsAPI", "Cloud"]
+  },
+  "PATH": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": ["Automation", "RPA"]
+  },
+  "BOX": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": ["CloudStorage", "Enterprise"]
+  },
+  "DBX": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cloud_software",
+    "tags": ["CloudStorage", "Collaboration"]
+  },
+
+  "TEAM": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "developer_tools",
+    "tags": ["Collaboration", "DeveloperTools"]
+  },
+  "GTLB": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "developer_tools",
+    "tags": ["DevOps", "Code"]
+  },
+  "ESTC": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "developer_tools",
+    "tags": ["Search", "Observability", "AI"]
+  },
+  "GDDY": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "developer_tools",
+    "tags": ["Domains", "WebHosting"]
+  },
+
+  "OKTA": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cybersecurity",
+    "tags": ["Identity", "Security"]
+  },
+  "FTNT": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cybersecurity",
+    "tags": ["NetworkSecurity", "Firewall"]
+  },
+  "S": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cybersecurity",
+    "tags": ["EndpointSecurity", "AI"]
+  },
+  "TENB": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cybersecurity",
+    "tags": ["VulnerabilityManagement"]
+  },
+  "RPD": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cybersecurity",
+    "tags": ["SecurityAnalytics"]
+  },
+  "QLYS": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "cybersecurity",
+    "tags": ["VulnerabilityManagement", "CloudSecurity"]
+  },
+
+  "WDAY": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "erp_crm",
+    "tags": ["HR", "Finance", "Enterprise"]
+  },
+  "HUBS": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "erp_crm",
+    "tags": ["CRM", "Marketing"]
+  },
+  "VEEV": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "erp_crm",
+    "tags": ["LifeSciences", "CRM", "Cloud"]
+  },
+  "PAYC": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "erp_crm",
+    "tags": ["HR", "Payroll"]
+  },
+  "ADP": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "erp_crm",
+    "tags": ["Payroll", "HR"]
+  },
+  "PAYX": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "erp_crm",
+    "tags": ["Payroll", "HR"]
+  },
+  "APP": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "enterprise_software",
+    "tags": ["AdTech", "MobileApps", "AI"]
+  },
+  "TTD": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "enterprise_software",
+    "tags": ["AdTech", "Advertising"]
+  },
+  "BILL": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "enterprise_software",
+    "tags": ["Fintech", "Payments", "SMB"]
+  },
+  "NCNO": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "enterprise_software",
+    "tags": ["BankingSoftware", "Cloud"]
+  },
+  "MANH": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "enterprise_software",
+    "tags": ["SupplyChain", "Logistics"]
+  },
+
+  "ADSK": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "developer_tools",
+    "tags": ["DesignSoftware", "Engineering"]
+  },
+  "PTC": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "developer_tools",
+    "tags": ["CAD", "PLM", "IndustrialSoftware"]
+  },
+  "DT": {
+    "sector": "technology",
+    "industry": "software",
+    "subindustry": "developer_tools",
+    "tags": ["Observability", "AI", "Cloud"]
+  }
+}

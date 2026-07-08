@@ -1,0 +1,3 @@
+BP
+CVX
+XOM
