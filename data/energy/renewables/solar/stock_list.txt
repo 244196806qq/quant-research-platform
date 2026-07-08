@@ -1,4 +1,0 @@
-FSLR
-ENPH
-SEDG
-RUN

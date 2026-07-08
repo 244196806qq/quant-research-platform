@@ -1,4 +1,0 @@
-DELL
-HPE
-NTNX
-SMCI

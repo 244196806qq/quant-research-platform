@@ -1,7 +1,0 @@
-BRK-B
-AIG
-ALL
-TRV
-PGR
-MET
-PRU

@@ -1,4 +1,0 @@
-ALGM
-IFNNY
-POWI
-STM

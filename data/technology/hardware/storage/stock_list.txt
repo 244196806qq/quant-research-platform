@@ -1,4 +1,0 @@
-NTAP
-P
-STX
-WDC
