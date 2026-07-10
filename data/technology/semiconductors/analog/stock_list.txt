@@ -1,0 +1,3 @@
+ADI
+MCHP
+NXPI

@@ -1100,7 +1100,8 @@ def rolling_top_mi_frequency(returns: pd.DataFrame, metadata: dict, industry: st
 def compare_high_mi_price_divergence(price_df, high_mi_tickers, lookback=63):
     norm_prices = normalized_price_series(price_df, high_mi_tickers, lookback)
     group_avg = norm_prices.mean(axis=1)
-
+    group_std = norm_prices.std(axis=1)
+    
     latest = norm_prices.iloc[-1]
     latest_group_avg = group_avg.iloc[-1]
 
@@ -1108,6 +1109,8 @@ def compare_high_mi_price_divergence(price_df, high_mi_tickers, lookback=63):
         "ticker": latest.index,
         "normalized_price": latest.values,
         "group_avg": latest_group_avg,
+        "group_std": group_std.iloc[-1],
+        "z_score": (latest.values - latest_group_avg) / group_std.iloc[-1],
         "relative_gap": latest.values - latest_group_avg,
         "relative_gap_pct": (latest.values / latest_group_avg) - 1,
     })
@@ -1296,9 +1299,9 @@ def main():
 
     price_df = pd.DataFrame()
     for i in range(len(df_stocks)):
-        df = df_stocks[i]
-        price_df[symbols[i]] = df["Adj Close"]
-    
+        df = pd.DataFrame({symbols[i]: df_stocks[i]["Adj Close"]})
+        price_df = pd.concat([price_df, df], axis=1)
+
     high_mi_price_divergence = compare_high_mi_price_divergence(price_df, frequency_table.ticker, lookback=63)
     print(high_mi_price_divergence)
     # print(df_stocks_returns)
