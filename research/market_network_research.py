@@ -480,12 +480,6 @@ def plot_min_spanning_tree(pearson_dist: pd.DataFrame, title: str="Who tends to 
     plt.title(title)
     plt.show()
 
-# def plot_matrix_correlation_heatmap(mi_df: pd.DataFrame, title: str = "Correlation Heatmap"):
-#     plt.figure(figsize=(10,7))
-#     sns.heatmap(mi_df, cmap="viridis", annot=True)
-#     plt.title(title)
-#     plt.show()
-
 def plot_states_correlation_heatmap(returns: pd.DataFrame, title: str = "Joint Probability"):
     labels = [
         "Strong Drop",
@@ -786,45 +780,6 @@ def plot_full_sector_network(distance_df, metadata, sector):
     plt.tight_layout()
     plt.show()
 
-# def build_mean_mi_table(empirical_mi_df, metadata):
-#     tickers = list(empirical_mi_df.columns)
-#     rows = []
-
-#     for ticker in tickers:
-#         info = metadata.get(ticker, {})
-#         sector = info.get("sector")
-#         industry = info.get("industry")
-#         subindustry = info.get("subindustry")
-
-#         same_subindustry = get_tickers_in_same_group(metadata, tickers, ticker, "subindustry")
-#         same_industry = get_tickers_in_same_group(metadata, tickers, ticker, "industry")
-#         same_sector = get_tickers_in_same_group(metadata, tickers, ticker, "sector")
-
-#         same_sector_diff_industry = [t for t in same_sector if metadata.get(t, {}).get("industry") != industry]
-#         overall_mean_mi = mean_mi_for_stock(empirical_mi_df, ticker)
-#         subindustry_mean_mi = mean_mi_against_tickers(empirical_mi_df, ticker, same_subindustry)
-#         industry_mean_mi = mean_mi_against_tickers(empirical_mi_df, ticker, same_industry)
-#         sector_mean_mi = mean_mi_against_tickers(empirical_mi_df, ticker, same_sector)
-#         sector_ex_industry_mean_mi = mean_mi_against_tickers(empirical_mi_df, ticker, same_sector_diff_industry)
-        
-#         rows.append({
-#             "ticker": ticker,
-#             "sector": sector,
-#             "industry": industry,
-#             "subindustry": subindustry,
-#             "overall_mean_mi": overall_mean_mi,
-#             "sector_mean_mi": sector_mean_mi,
-#             "industry_mean_mi": industry_mean_mi,
-#             "subindustry_mean_mi": subindustry_mean_mi,
-#             "sector_ex_industry_mean_mi": sector_ex_industry_mean_mi,
-#             "num_same_industry": len(same_industry),
-#             "num_same_sector": len(same_sector),
-#             "num_same_sector_diff_industry": len(same_sector_diff_industry),
-#         })
-#     result = pd.DataFrame(rows)
-
-#     return result.sort_values("overall_mean_mi", ascending=False)
-
 def build_mean_mi_table_robust(empirical_mi_df: pd.DataFrame, overlap_count_df: pd.DataFrame, metadata: dict, min_overlap: int = 252,) -> pd.DataFrame:
     tickers = list(empirical_mi_df.columns)
     rows = []
@@ -998,7 +953,7 @@ def mi_stats_against_tickers(empirical_mi_df: pd.DataFrame, overlap_count_df: pd
 
 
 # Rolling Frequency
-def rolling_top_mi_frequency(returns: pd.DataFrame, metadata: dict, industry: str = "semiconductors", window_length: int = 300, step: int = 21,top_n: int = 20, min_overlap: int = 252,):
+def rolling_top_mi_frequency(returns: pd.DataFrame, metadata: dict, industry: str = "semiconductors", window_length: int = 300, step: int = 21,top_n: int = 20, min_overlap: int = 252, back_years: int=2):
     industry_tickers = [
         ticker for ticker in returns.columns
         if metadata.get(ticker, {}).get("sector") == "technology"
@@ -1008,12 +963,13 @@ def rolling_top_mi_frequency(returns: pd.DataFrame, metadata: dict, industry: st
     frequency_dict = {}
     records = []
     eligible_dict = {}
+    frequency_score = {}
     n = industry_returns.shape[0]
 
-    for i in range(0, n - window_length + 1, step):
-        rolling_returns = industry_returns.iloc[i:i + window_length]
+    for i in range(window_length, n, step):
+        rolling_returns = industry_returns.iloc[i-window_length:i]
         window_end_date = rolling_returns.index.max()
-        analysis_start_date = industry_returns.index.max() - pd.DateOffset(years=2)
+        analysis_start_date = industry_returns.index.max() - pd.DateOffset(years=back_years)
         if window_end_date < analysis_start_date:
             continue
 
@@ -1038,9 +994,34 @@ def rolling_top_mi_frequency(returns: pd.DataFrame, metadata: dict, industry: st
             .sort_values("industry_median_mi", ascending=False).head(top_n)
         )
 
+        decay = 0.90
+        for ticker in frequency_score:
+            frequency_score[ticker] *= decay
+        for ticker in ranked["ticker"]:
+            frequency_dict[ticker] = frequency_dict.get(ticker, 0) + 1
+            frequency_score[ticker] = frequency_score.get(ticker, 0) + 1
+
+        high_mi_tickers = ranked["ticker"].tolist()
+        high_mi_return_divergence = compare_high_mi_return_divergence(rolling_returns, high_mi_tickers, frequency_score, ranked, lookback=63)
+        high_mi_price_divergence = compare_high_mi_price_divergence(rolling_returns, high_mi_tickers,frequency_score, ranked, lookback=63)
+        high_mi_divergence = high_mi_return_divergence[["ticker", "return_z_score", "latest_residual"]].merge(
+            high_mi_price_divergence[["ticker", "price_z_score", "relative_gap"]],
+            on="ticker",
+            how="inner",
+        )
+        
+        divergence_lookup = high_mi_divergence.set_index("ticker")
         for rank, row in enumerate(ranked.itertuples(index=False), start=1):
             ticker = row.ticker
-            frequency_dict[ticker] = frequency_dict.get(ticker, 0) + 1
+            if ticker in divergence_lookup.index:
+                divergence = divergence_lookup.loc[ticker]
+                return_z = divergence["return_z_score"]
+                price_z = divergence["price_z_score"]
+                buy_signal = pd.notna(return_z) and pd.notna(price_z) and return_z < -2 or price_z < -2
+            else:
+                return_z = np.nan
+                price_z = np.nan
+                buy_signal = False
             records.append({
                 "window_end": window_end_date,
                 "ticker": ticker,
@@ -1049,6 +1030,10 @@ def rolling_top_mi_frequency(returns: pd.DataFrame, metadata: dict, industry: st
                 "industry_mean_mi": row.industry_mean_mi,
                 "industry_valid_pairs": row.industry_valid_pairs,
                 "industry_avg_overlap": row.industry_avg_overlap,
+                "frequency_score": frequency_score[ticker],
+                "return_z_score": return_z,
+                "price_z_score": price_z,
+                "buy_signal": buy_signal,
             })
 
     detail_table = pd.DataFrame(records)
@@ -1065,12 +1050,11 @@ def rolling_top_mi_frequency(returns: pd.DataFrame, metadata: dict, industry: st
         frequency_table["top_count"] / frequency_table["eligible_windows"]
     )
     latest_date = detail_table["window_end"].max()
-    latest = detail_table[
-                                detail_table["window_end"] == latest_date][
-                                    ["ticker", "rank", "industry_median_mi"]
-                                ].rename(columns=
-                                        {"rank": "latest_rank","industry_median_mi": "latest_median_mi"}
-                                        )
+    latest = detail_table[detail_table["window_end"] == latest_date][
+                            ["ticker", "rank", "industry_median_mi"]
+                        ].rename(columns=
+                                {"rank": "latest_rank","industry_median_mi": "latest_median_mi"}
+                                )
     avg_stats = (
         detail_table
         .groupby("ticker")
@@ -1097,27 +1081,81 @@ def rolling_top_mi_frequency(returns: pd.DataFrame, metadata: dict, industry: st
 
     return detail_table, frequency_table
 
-def compare_high_mi_price_divergence(price_df, high_mi_tickers, lookback=63):
+def compare_high_mi_price_divergence(price_df, high_mi_tickers, frequency_score, ranked, lookback=63):
+    result = []
     norm_prices = normalized_price_series(price_df, high_mi_tickers, lookback)
-    group_avg = norm_prices.mean(axis=1)
-    group_std = norm_prices.std(axis=1)
-    
-    latest = norm_prices.iloc[-1]
-    latest_group_avg = group_avg.iloc[-1]
+    for ticker in high_mi_tickers:
+        ticker_price = norm_prices[ticker]
+        peer_prices = norm_prices.drop(columns=[ticker], errors="ignore")
+        frequency_component = sum(value for key, value in frequency_score.items() if key in peer_prices.columns)
+        norm_freq_component = {key: v / frequency_component for key, v in frequency_score.items() if key in peer_prices.columns}
+        mi_component = ranked.set_index("ticker")["industry_median_mi"].reindex(peer_prices.columns).drop(index=ticker, errors="ignore")
+        mi_component = mi_component / mi_component.sum()
+        raw_weight = (0.5 * pd.Series(norm_freq_component) + 0.5 * mi_component).dropna()
+        weight = raw_weight / raw_weight.sum()
 
-    result = pd.DataFrame({
-        "ticker": latest.index,
-        "normalized_price": latest.values,
-        "group_avg": latest_group_avg,
-        "group_std": group_std.iloc[-1],
-        "z_score": (latest.values - latest_group_avg) / group_std.iloc[-1],
-        "relative_gap": latest.values - latest_group_avg,
-        "relative_gap_pct": (latest.values / latest_group_avg) - 1,
-    })
+        group_avg = peer_prices.mul(weight, axis=1).sum(axis=1)
+        weighted_varience = (peer_prices.sub(group_avg, axis=0).pow(2).mul(weight, axis=1)).sum(axis=1)
+        group_std = np.sqrt(weighted_varience)
 
-    return result.sort_values("relative_gap_pct")
+        latest = ticker_price.iloc[-1]
+        latest_group_avg = group_avg.iloc[-1]
 
-        
+        if group_std.iloc[-1] == 0 or pd.isna(group_std.iloc[-1]):
+                zscore = np.nan
+        else:
+            zscore = (latest - latest_group_avg) / group_std.iloc[-1]
+
+        result.append({
+            "ticker": ticker,
+            "normalized_price": latest,
+            "group_avg": latest_group_avg,
+            "group_std": group_std.iloc[-1],
+            "price_z_score": zscore,
+            "relative_gap": latest - latest_group_avg,
+            "relative_gap_pct": (latest / latest_group_avg) - 1 if latest_group_avg != 0 else np.nan, 
+        })
+
+    return pd.DataFrame(result).sort_values("relative_gap_pct").reset_index(drop=True)
+
+def compare_high_mi_return_divergence(returns_df, high_mi_tickers, frequency_score, ranked, lookback=63):
+    result = []
+    for ticker in high_mi_tickers:
+        ticker_returns = returns_df[ticker]
+        peer_returns = returns_df[high_mi_tickers].dropna(how="all").drop(columns=[ticker])
+        frequency_component = sum(value for key, value in frequency_score.items() if key in peer_returns.columns)
+        norm_freq_component = {key: v / frequency_component for key, v in frequency_score.items() if key in peer_returns.columns}
+        mi_component = ranked.set_index("ticker")["industry_median_mi"].reindex(peer_returns.columns).drop(index=ticker, errors="ignore")
+        mi_component = mi_component / mi_component.sum()
+        raw_weight = (0.5 * pd.Series(norm_freq_component) + 0.5 * mi_component).dropna()
+        weight = raw_weight / raw_weight.sum()
+
+        group_avg = peer_returns.mul(weight, axis=1).sum(axis=1)
+        residual = ticker_returns.sub(group_avg, axis=0).dropna(how="all")
+        history = residual.iloc[-lookback-1:-1]
+        residual_std = history.std(axis=0)
+        residual_mean = history.mean(axis=0)
+
+        latest_return = ticker_returns.iloc[-1]
+        latest_group_return = group_avg.iloc[-1]
+        latest_residual = residual.iloc[-1]
+
+        zscore = (latest_residual - residual_mean) / residual_std if residual_std != 0 else np.nan
+
+        result.append({
+            "ticker": ticker,
+            "return": latest_return,
+            "group_return": latest_group_return,
+            "latest_residual": latest_residual,
+            "residual_mean": residual_mean,
+            "residual_std": residual_std,
+            "return_z_score": zscore,
+        })
+
+    return pd.DataFrame(result).sort_values("return_z_score").reset_index(drop=True) 
+      
+
+
 
 # Verification
 def print_industry_mst_connections(distance_df, metadata, sector):
@@ -1279,7 +1317,7 @@ def main():
     #     ]])
     
     # overlap_matrix = compute_overlap_count_matrix(df_stocks_returns)
-    # mean_mi_table = build_mean_mi_table_robust(empirical_mi_df, overlap_matrix, metadata, min_overlap=300)
+    # mean_mi_table = build_mean_mi_table_robust(empirical_mi_df, overlap_matrix, metadata, min_overlap=ROLLING_DAYS)
     delete_cache_if_older(ROLLING_FREQ_CACHE, RETURNS_CACHE)
     delete_cache_if_older(ROLLING_FREQ_CACHE, METADATA_FILE)
 
@@ -1289,25 +1327,25 @@ def main():
                     df_stocks_returns,
                     metadata,
                     industry="semiconductors",
-                    window_length=300,
+                    window_length=ROLLING_DAYS,
                     step=21,
                     top_n=10,
                     min_overlap=252,
+                    back_years=2,
                 )
     )
-    print(frequency_table)
+    print(detail_table[detail_table["buy_signal"]])
+    # price_df = pd.DataFrame()
+    # for i in range(len(df_stocks)):
+    #     df = pd.DataFrame({symbols[i]: df_stocks[i]["Adj Close"]})
+    #     price_df = pd.concat([price_df, df], axis=1)
 
-    price_df = pd.DataFrame()
-    for i in range(len(df_stocks)):
-        df = pd.DataFrame({symbols[i]: df_stocks[i]["Adj Close"]})
-        price_df = pd.concat([price_df, df], axis=1)
-
-    high_mi_price_divergence = compare_high_mi_price_divergence(price_df, frequency_table.ticker, lookback=63)
-    print(high_mi_price_divergence)
-    # print(df_stocks_returns)
-    # print(empirical_mi_df)
-    # print(overlap_matrix)
-    # print(mean_mi_table)
+    # high_mi_price_divergence = compare_high_mi_price_divergence(price_df, frequency_table.ticker, lookback=63)
+    # print(high_mi_price_divergence)
+    
+    # print(df_stocks_returns.mean(axis=1))
+    # high_mi_return_divergence = compare_high_mi_return_divergence(df_stocks_returns, frequency_table.ticker, lookback=63)
+    # print(high_mi_return_divergence)
 
     # Rank by Median MI
     # print("Rank by Median MI")
