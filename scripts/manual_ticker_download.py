@@ -8,7 +8,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.yFinance import download_ticker_data
+from src.data_manager import ensure_ticker_data  # noqa: E402
 
 
 def add_manual_ticker():
@@ -17,9 +17,10 @@ def add_manual_ticker():
     failed_tickers = []
     for ticker in ticker_list["Ticker"]:
         try:
-            download_ticker_data(ticker)
+            ensure_ticker_data(ticker)
             valid_tickers.append(ticker)
-        except Exception:
+        except Exception as exc:
+            print(f"Failed to prepare {ticker}: {exc}")
             failed_tickers.append(ticker)
         time.sleep(5)
     print(f"Successfully downloaded data for: {valid_tickers}")
