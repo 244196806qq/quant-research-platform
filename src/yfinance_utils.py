@@ -9,7 +9,19 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def _normalize_symbol(symbol: str) -> str:
-    return symbol.strip().upper()
+    if not isinstance(symbol, str):
+        raise TypeError("Ticker symbol must be a string.")
+    normalized = symbol.strip().upper()
+    if (
+        not normalized
+        or normalized in {".", ".."}
+        or "/" in normalized
+        or "\\" in normalized
+        or "\x00" in normalized
+        or Path(normalized).is_absolute()
+    ):
+        raise ValueError(f"Invalid ticker symbol: {symbol!r}")
+    return normalized
 
 
 def _flatten_columns(df: pd.DataFrame, symbol: str) -> pd.DataFrame:
@@ -29,17 +41,23 @@ def _flatten_columns(df: pd.DataFrame, symbol: str) -> pd.DataFrame:
 def download_ticker_data(
     symbol: str,
     start: str = "1986-08-20",
-    end: str = "2026-06-01",
-    data_dir: str = "data",
+    end: str | None = None,
+    data_dir: str | None = None,
     auto_adjust: bool = False,
 ) -> Path:
     symbol = _normalize_symbol(symbol)
-    if not symbol:
-        raise ValueError("Ticker symbol must not be empty.")
 
-    target_dir = Path(data_dir)
-    if not target_dir.is_absolute():
-        target_dir = PROJECT_ROOT / target_dir
+    if data_dir is None:
+        try:
+            from .data_manager import canonical_filepath
+        except ImportError:
+            from data_manager import canonical_filepath
+
+        target_dir = canonical_filepath(symbol).parent
+    else:
+        target_dir = Path(data_dir)
+        if not target_dir.is_absolute():
+            target_dir = PROJECT_ROOT / target_dir
     target_dir.mkdir(parents=True, exist_ok=True)
     target_path = target_dir / f"{symbol}.csv"
 
@@ -53,6 +71,11 @@ def download_ticker_data(
 
     df = _flatten_columns(df, symbol)
     df = df.reset_index()
+
+    # With auto-adjustment enabled, yfinance returns adjusted values in
+    # ``Close`` and may omit the separate ``Adj Close`` column.
+    if auto_adjust and "Adj Close" not in df.columns and "Close" in df.columns:
+        df["Adj Close"] = df["Close"]
 
     expected_columns = ["Date", "Adj Close", "Close", "High", "Low", "Open", "Volume"]
     if not set(expected_columns).issubset(set(df.columns)):
@@ -69,8 +92,19 @@ def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Download stock history to CSV using yfinance.")
     parser.add_argument("symbol", help="Ticker symbol to download, e.g. AAPL")
     parser.add_argument("--start", default="1986-08-20", help="Start date in YYYY-MM-DD format")
-    parser.add_argument("--end", default="2026-05-05", help="End date in YYYY-MM-DD format")
-    parser.add_argument("--data-dir", default="data", help="Directory to save CSV data")
+    parser.add_argument(
+        "--end",
+        default=None,
+        help="Exclusive end date in YYYY-MM-DD format (default: latest available)",
+    )
+    parser.add_argument(
+        "--data-dir",
+        default=None,
+        help=(
+            "Directory to save CSV data (default: metadata-derived _stocks path "
+            "or data/UnPlaced)"
+        ),
+    )
     parser.add_argument("--auto-adjust", action="store_true", help="Use auto-adjusted prices")
     return parser.parse_args()
 

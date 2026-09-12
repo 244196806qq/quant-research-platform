@@ -185,11 +185,19 @@ def simulate_strategy(dfs, holding, symbols, strategy, initial_money, deposit, i
     - `fee` and `slippage` are fractional costs applied to turnover
     Returns a pandas Series (equity) for the combined portfolio using the strategy signals.
     """
+    if not dfs:
+        raise ValueError("At least one ticker dataframe is required for a backtest.")
+    if len(dfs) != len(symbols):
+        raise ValueError(
+            f"Ticker/data mismatch: received {len(symbols)} symbols and {len(dfs)} dataframes."
+        )
+
     df_strategy = pd.DataFrame(index=dfs[0].index)
     df_strategy["Market_Return"] = 0.0
 
     # per-strategy diagnostics container
-    diagnostics = diagnostics or {}
+    if diagnostics is None:
+        diagnostics = {}
     diagnostics.setdefault(strategy, [])
 
     # load sizing and weighting params

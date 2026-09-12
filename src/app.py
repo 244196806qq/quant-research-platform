@@ -1,11 +1,16 @@
-from pathlib import Path
 import datetime
+import sys
+from pathlib import Path
 
 import pandas as pd
 import streamlit as st
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 try:
     from .backtest import (
@@ -19,7 +24,7 @@ try:
         simulate_strategy,
     )
 except ImportError:
-    from backtest import (
+    from src.backtest import (
         calculate_annual_volatility,
         calculate_cagr,
         calculate_daily_equity,
@@ -33,12 +38,22 @@ except ImportError:
 try:
     from .data_loader import csv_reader
 except ImportError:
-    from data_loader import csv_reader
+    from src.data_loader import csv_reader
 
 try:
-    from .data_manager import ensure_ticker_data, ticker_exists
+    from .data_manager import (
+        ambiguous_unclassified_tickers,
+        discover_tickers,
+        ensure_ticker_data,
+        ticker_exists,
+    )
 except ImportError:
-    from data_manager import ensure_ticker_data, ticker_exists
+    from src.data_manager import (
+        ambiguous_unclassified_tickers,
+        discover_tickers,
+        ensure_ticker_data,
+        ticker_exists,
+    )
 
 try:
     from .plotting import (
@@ -46,35 +61,26 @@ try:
         clean_plot_df,
         drawdown_figure,
         equity_curve_figure,
-        rolling_volatility_figure,
         signal_figure,
     )
 except ImportError:
-    from plotting import (
+    from src.plotting import (
         buy_and_hold_figure,
         clean_plot_df,
         drawdown_figure,
         equity_curve_figure,
-        rolling_volatility_figure,
         signal_figure,
     )
 
 try:
     from . import strategies as strategies_mod
 except ImportError:
-    import strategies as strategies_mod
-
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = PROJECT_ROOT / "data"
-
+    from src import strategies as strategies_mod
 
 # strategy options are loaded dynamically from the registry
 STRATEGY_OPTIONS = list(strategies_mod.STRATEGY_REGISTRY.keys())
 
-
 st.set_page_config(page_title="Quant Backtester — Streamlit", layout="wide")
-
 
 def init_state():
     st.session_state.setdefault("tickers", [])
@@ -153,8 +159,8 @@ def sidebar_ui():
             elif ticker in st.session_state["tickers"]:
                 st.info(f"{ticker} is already in the list.")
             else:
-                local = ticker_exists(ticker)
                 try:
+                    local = ticker_exists(ticker)
                     ensure_ticker_data(ticker)
                     add_ticker_to_state(ticker)
                     if local:
@@ -172,11 +178,22 @@ def sidebar_ui():
 
         st.markdown("---")
         st.write(f"Tickers: {len(st.session_state['tickers'])} — Active: {len(st.session_state['active'])}")
-        local_files = sorted([p.stem for p in DATA_DIR.glob("*.csv")])
-        if local_files:
-            st.selectbox("Local CSVs", options=local_files, key="local_csvs_box")
+        try:
+            local_tickers = discover_tickers()
+            ambiguous_tickers = ambiguous_unclassified_tickers()
+        except Exception as exc:
+            local_tickers = []
+            ambiguous_tickers = {}
+            st.error(f"Failed to discover local ticker data: {exc}")
+        if ambiguous_tickers:
+            st.warning(
+                "Ambiguous unclassified ticker files were skipped: "
+                + ", ".join(ambiguous_tickers)
+            )
+        if local_tickers:
+            st.selectbox("Local CSVs", options=local_tickers, key="local_csvs_box")
         else:
-            st.caption("No local CSV files found in /data")
+            st.caption("No local stock CSV files found.")
 
     # --- Portfolio ---
     with st.sidebar.expander("Portfolio", expanded=False):
@@ -241,19 +258,19 @@ def sidebar_ui():
 
     # --- Indicator Parameters ---
     with st.sidebar.expander("Indicator Parameters", expanded=False):
-        st.subheader("Common indicator params")
-        p1, p2 = st.columns(2)
-        params = st.session_state.setdefault("params", {})
-        params["ma_window"] = p1.slider("MA window", 5, 200, int(params.get("ma_window", 20)))
-        params["ewma_span"] = p1.number_input("EWMA span", min_value=1, value=int(params.get("ewma_span", 20)), step=1)
-        params["rsi_lower"] = p2.slider("RSI lower", 0, 50, int(params.get("rsi_lower", 30)))
-        params["rsi_upper"] = p2.slider("RSI upper", 50, 100, int(params.get("rsi_upper", 70)))
-        params["zscore_low"] = p2.number_input("Z low", value=float(params.get("zscore_low", -2.0)))
-        params["zscore_high"] = p2.number_input("Z high", value=float(params.get("zscore_high", 2.0)))
-        st.session_state["params"] = params
+        # st.subheader("Common indicator params")
+        # p1, p2 = st.columns(2)
+        # params = st.session_state.setdefault("params", {})
+        # params["ma_window"] = p1.slider("MA window", 5, 200, int(params.get("ma_window", 20)))
+        # params["ewma_span"] = p1.number_input("EWMA span", min_value=1, value=int(params.get("ewma_span", 20)), step=1)
+        # params["rsi_lower"] = p2.slider("RSI lower", 0, 50, int(params.get("rsi_lower", 30)))
+        # params["rsi_upper"] = p2.slider("RSI upper", 50, 100, int(params.get("rsi_upper", 70)))
+        # params["zscore_low"] = p2.number_input("Z low", value=float(params.get("zscore_low", -2.0)))
+        # params["zscore_high"] = p2.number_input("Z high", value=float(params.get("zscore_high", 2.0)))
+        # st.session_state["params"] = params
 
-        # Per-strategy parameter expanders
-        st.markdown("---")
+        # # Per-strategy parameter expanders
+        # st.markdown("---")
         st.subheader("Strategy parameters")
         st.session_state.setdefault("strategy_params", {})
         for strat in st.session_state.get("strategies", []):
@@ -383,7 +400,33 @@ def main():
         st.header("Overview")
         st.write("Active tickers:" , st.session_state["active"]) 
         st.write("Selected strategies:", st.session_state["strategies"]) 
-        st.write("Parameters:", st.session_state["params"]) 
+        params = st.session_state.get("params", {})
+        backtest_params = {
+            "initial_money" : st.session_state.get("ui_initial_money", params.get("initial_money", 10000)),
+            "deposit_amount" : st.session_state.get("ui_deposit_amount", params.get("deposit_amount", 10000)),
+            "weigth_mode" : params.get("weight_mode", "manual"),
+            "sizing_mode" : params.get("sizing_mode", "fixed"),
+            "min_exposure" : params.get("min_exposure", 0.0),
+            "max_exposure" : params.get("max_exposure", 1.5),
+            "rebalance" : params.get("rebalance", "daily"),
+            "fee" : params.get("fee", 0.0),
+            "slippage" : params.get("slippage", 0.0),
+            "allow_leverage" : st.session_state.get("allow_leverage", False),
+        }
+        if backtest_params["sizing_mode"] == "vol_target":
+            backtest_params["vol_target"] = params.get("vol_target", 0.15)
+            backtest_params["sizing_lookback"] = params.get("sizing_lookback", 63)
+        if backtest_params["allow_leverage"]:
+            backtest_params["max_leverage"] = params.get("max_leverage", 1.5)
+        st.write("Backtest Parameters:", backtest_params)
+        selected_strategy_params = {}
+        for strategy in st.session_state.get("strategies", []):
+            strategy_defaults = (
+                strategies_mod.STRATEGY_METADATA.get(strategy, {}).get("parameters", {})
+            )
+            if strategy_defaults:
+                selected_strategy_params[strategy] = st.session_state.get("strategy_params", {}).get(strategy, strategy_defaults)
+        st.write("Selected Strategy Parameters:", selected_strategy_params)
 
     # Run/update workflow
     if run:
@@ -415,15 +458,13 @@ def main():
                 with st.spinner("Loading data and running backtest..."):
                     # ensure data exists locally (download if needed)
                     for ticker in active:
-                        local_path = DATA_DIR / f"{ticker}.csv"
-                        if local_path.exists():
-                            # load later via csv_reader
-                            continue
                         try:
+                            local = ticker_exists(ticker)
                             ensure_ticker_data(ticker)
-                            st.success(f"Downloaded and saved data for {ticker}.")
+                            if not local:
+                                st.success(f"Downloaded and saved data for {ticker}.")
                         except Exception as exc:
-                            st.error(f"Failed to download {ticker}: {exc}")
+                            st.error(f"Failed to prepare data for {ticker}: {exc}")
                             raise RuntimeError(f"Missing data for {ticker}") from exc
 
                     dfs = csv_reader(active, start_date=st.session_state.get("start_date"), end_date=st.session_state.get("end_date"))
@@ -440,9 +481,10 @@ def main():
 
                     df_strategy = pd.DataFrame(index=dfs[0].index)
                     exposures = pd.DataFrame(index=dfs[0].index)
-                    all_params = st.session_state.get("params", {}).copy()
+                    base_params = st.session_state.get("params", {}).copy()
                     # st.write("Running strategies:", strategies_to_run)
                     for strategy in strategies_to_run:
+                        all_params = base_params.copy()
                         all_params.update(st.session_state.get("strategy_params", {}).get(strategy, {}))
                         df_strategy[strategy], exposures[strategy] = simulate_strategy(
                             dfs,
@@ -455,6 +497,8 @@ def main():
                             params=all_params,
                             diagnostics=strategy_diagnostics,
                             allow_leverage=st.session_state.get("allow_leverage", False),
+                            fee=all_params.get("fee", 0.0),
+                            slippage=all_params.get("slippage", 0.0)
                         )
                         # st.write(df_strategy[strategy].head())
                         

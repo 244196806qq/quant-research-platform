@@ -5,24 +5,49 @@ from pathlib import Path
 import pandas as pd
 import yfinance as yf
 
+try:
+    from .data_manager import (
+        ambiguous_unclassified_tickers,
+        iter_local_data_files,
+        missing_metadata_tickers,
+    )
+except ImportError:
+    from data_manager import (
+        ambiguous_unclassified_tickers,
+        iter_local_data_files,
+        missing_metadata_tickers,
+    )
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = PROJECT_ROOT / "data"
 TODAY_DATE = date.today()
-TODAY_WEEKDAY = TODAY_DATE.weekday()
+
+
+def download_end_date(today: date) -> date:
+    """Return yfinance's exclusive end date after the latest weekday."""
+    if today.weekday() == 5:
+        latest_market_date = today - timedelta(days=1)
+    elif today.weekday() == 6:
+        latest_market_date = today - timedelta(days=2)
+    else:
+        latest_market_date = today
+    return latest_market_date + timedelta(days=1)
 
 
 def update_one_file(file):
     file_path = Path(file)
-    symbol = file_path.stem
+    symbol = file_path.stem.strip().upper()
     df = pd.read_csv(file_path)
+    if df.empty:
+        raise ValueError(f"{file_path} contains no market data")
+    if "Date" not in df.columns:
+        raise ValueError(f"{file_path} is missing required column: Date")
+
     df["Date"] = pd.to_datetime(df["Date"])
     df = df.sort_values("Date")
 
     last_date = df["Date"].iloc[-1].date()
 
     start_date = last_date + timedelta(days=1)
-    end_date = (TODAY_DATE) - (timedelta(days=TODAY_WEEKDAY - 4) if TODAY_WEEKDAY > 4 else timedelta(days=0))
+    end_date = download_end_date(TODAY_DATE)
 
     if start_date >= end_date:
         print(f"{symbol}: already up to date")
@@ -38,16 +63,22 @@ def update_one_file(file):
 
     wanted_columns = ["Date", "Adj Close", "Close", "High", "Low", "Open", "Volume"]
 
+    if new_data is None or new_data.empty:
+        print(f"{symbol}: no new market data")
+        return
+
     if isinstance(new_data.columns, pd.MultiIndex):
         new_data.columns = new_data.columns.get_level_values(0)
 
     new_data = new_data.reset_index()
+    missing_columns = [column for column in wanted_columns if column not in new_data.columns]
+    if missing_columns:
+        raise ValueError(
+            f"Downloaded data for {symbol} is missing required columns: {missing_columns}"
+        )
+
     new_data = new_data[wanted_columns]
     new_data.columns.name = None
-
-    if new_data.empty:
-        print(f"{symbol}: no new market data")
-        return
 
     combined = pd.concat([df, new_data], ignore_index=True)
     combined["Date"] = pd.to_datetime(combined["Date"])
@@ -60,8 +91,15 @@ def update_one_file(file):
 
 
 def update_all_files():
-    files = sorted(DATA_DIR.glob("**/_stocks/*.csv"))
-    for file in files:
+    missing = missing_metadata_tickers()
+    if missing:
+        print(f"Metadata tickers missing canonical CSV files: {', '.join(missing)}")
+
+    ambiguous = ambiguous_unclassified_tickers()
+    if ambiguous:
+        print(f"Ambiguous unclassified ticker files skipped: {', '.join(ambiguous)}")
+
+    for file in iter_local_data_files():
         update_one_file(file)
         time.sleep(0.1)
 
